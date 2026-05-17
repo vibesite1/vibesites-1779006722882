@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeSites - 당신의 아이디어를 현실로</title>
+    <style>
+        /* 기본 설정 및 색상 변수 */
+        :root {
+            --primary-color: #6a00ff; /* 활기찬 보라색 */
+            --secondary-color: #00eaff; /* 밝은 시안색 */
+            --text-color: #333;
+            --light-text-color: #f0f0f0;
+            --background-color: #ffffff;
+            --dark-background-color: #1a1a1a;
+            --gradient-bg: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        /* 모든 요소의 마진/패딩 초기화 및 박스 모델 설정 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 바디 스타일 */
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            scroll-behavior: smooth;
+        }
+
+        /* 링크 스타일 */
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* 컨테이너 클래스 (중앙 정렬 및 최대 너비) */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: var(--dark-background-color);
+            color: var(--light-text-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--light-text-color);
+            margin-right: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--light-text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        /* 히어로 섹션 */
+        .hero {
+            background: var(--gradient-bg);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 100px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            opacity: 0.9;
+        }
+
+        /* 버튼 스타일 */
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-background-color);
+            color: var(--light-text-color);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+        }
+
+        /* 섹션 공통 스타일 */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        section:nth-of-type(even) {
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* 기능 섹션 그리드 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            background-color: var(--background-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-item i { /* Font Awesome 아이콘 스타일 */
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark-background-color);
+        }
+
+        .feature-item p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* CTA (Call to Action) 섹션 */
+        .cta-section {
+            background: var(--gradient-bg);
+            color: var(--light-text-color);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--light-text-color);
+            margin-bottom: 40px;
+        }
+        .cta-section h2::after {
+            background-color: var(--light-text-color);
+        }
+
+        .cta-section p {
+            font-size: 1.5rem;
+            margin-bottom: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            background-color: var(--dark-background-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+
+        footer .social-links {
+            margin-top: 20px;
+        }
+
+        footer .social-links a {
+            color: var(--light-text-color);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                width: 100%;
+            }
+            nav a {
+                padding: 5px 0;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            .cta-section p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 80px 15px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+            section {
+                padding: 60px 15px;
+            }
+            .feature-item {
+                padding: 20px;
+            }
+            .feature-item h3 {
+                font-size: 1.5rem;
+            }
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+            .cta-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <!-- Font Awesome 아이콘 라이브러리 (옵션) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">VibeSites</a>
+            <nav>
+                <ul>
+                    <li><a href="#features">기능</a></li>
+                    <li><a href="#cta">시작하기</a></li>
+                    <li><a href="https://vibesite-oxc9.onrender.com" target="_blank">사이트 방문</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>당신의 아이디어를 현실로, VibeSites</h1>
+            <p>VibeSites는 코딩 없이 아름답고 반응형 웹사이트를 몇 분 만에 만들 수 있게 도와줍니다.</p>
+            <a href="https://vibesite-oxc9.onrender.com" target="_blank" class="btn">지금 바로 나만의 VibeSite 만들기</a>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2>VibeSites만의 특별한 기능</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-magic"></i>
+                        <h3>손쉬운 제작</h3>
+                        <p>직관적인 인터페이스로 코딩 지식 없이도 전문가 수준의 웹사이트를 만들 수 있습니다.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>완벽한 반응형</h3>
+                        <p>데스크톱, 태블릿, 모바일 등 모든 기기에서 완벽하게 작동하는 반응형 디자인을 제공합니다.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-palette"></i>
+                        <h3>아름다운 디자인</h3>
+                        <p>다양한 템플릿과 커스터마이징 옵션으로 당신의 비전을 실현하세요.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <h3>빠른 로딩 속도</h3>
+                        <p>최적화된 성능으로 방문자에게 빠르고 쾌적한 웹사이트 경험을 선사합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="cta-section">
+            <div class="container">
+                <h2>당신의 온라인 존재를 강화할 준비가 되셨나요?</h2>
+                <p>VibeSites와 함께라면 당신의 비즈니스나 개인 프로젝트를 위한 웹사이트 구축이 이보다 쉬울 수 없습니다. 지금 바로 시작하여 당신의 아이디어를 전 세계에 선보이세요!</p>
+                <a href="https://vibesite-oxc9.onrender.com" target="_blank" class="btn">VibeSite 시작하기</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 VibeSites AI. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- 필요한 경우 여기에 JavaScript를 추가할 수 있습니다. -->
+    <script>
+        // 현재 이 웹사이트는 복잡한 JavaScript 기능이 필요하지 않습니다.
+        // 하지만 필요하다면 여기에 코드를 작성할 수 있습니다.
+        // 예: 부드러운 스크롤, 모바일 메뉴 토글 등
+    </script>
+</body>
+</html>
